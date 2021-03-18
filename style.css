@@ -1,1 +1,84 @@
+*{
+    font-family: 'Roboto', sans-serif;
+    list-style: none;
+}
+body{
+    margin: 0;
+}
+.header{
+    width: 100%;
+    background-color:indigo;
+    height: 10vh;
+    position: relative;
+    margin-bottom: 40px;
+}
+.app-name{
+    color: #fff;
+    text-align: center;
+    line-height: 10vh;
+    font-size: 40px;
+}
+.fav-btn{
+    display: inline;
+    position: absolute;
+    right: 25px;
+    top: 3vh;
+    background-color: #3FC380;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    width: 150px;
+    font-size: 24px;
+    height: 35px;
+    color: #fff;
+}
+.container{
+    margin: 0 15vw;
+}
+.search-form{
+    text-align: center;
+    margin-bottom: 15px;
+}
+.search-form h1{
+    font-size: 30px;
+    color: #8DB0BB;
+}
+.search-form input{
+    width: 20vw;
+    height: 3vh;
+    border: 1px solid grey;
+    border-radius: 3px;
+    padding-left: 5px;
+    margin-right: 10px;
+    font-size: 16px;
+}
+#search-btn{
+    font-size: 20px;
+    border: 1px solid transparent;
+    outline: none;
+    background-color: #fff;
+}
+.recent-searches{
+    text-align: center;
+    border-radius: 3px;
+    border: 1px solid grey;
+    width: 20vw;
+    margin:auto;
+    padding-left: 0;
+    transform: translate(-4%);
+}
+.recent-searches li{
+    width: 20vw;
+    margin: auto;
+    line-height: 30px;
+    border-bottom: 1px solid grey;
+}
+.recent-searches li:hover{
+    background-color:lightskyblue;
+}
+.recent-searches li:last-child{
+    border-bottom: hidden;
+}
 
+.hide{
+    display: none;
+}
