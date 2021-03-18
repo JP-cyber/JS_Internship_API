@@ -1,8 +1,4 @@
 export default class UI {
-    static toggleRecentSearches() {
-        const recentSearchesBlock = document.querySelector('.recent-searches');
-        recentSearchesBlock.classList.toggle('hide');
-    }
 
     static updateRecentSearches() {
         const searches = localStorage.getItem('searches');

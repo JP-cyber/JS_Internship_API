@@ -57,6 +57,11 @@ body{
     outline: none;
     background-color: #fff;
 }
+.recent-searches-title{
+    text-align: center;
+    font-size: 24px;
+    transform: translate(-1.5%);
+}
 .recent-searches{
     text-align: center;
     border-radius: 3px;
