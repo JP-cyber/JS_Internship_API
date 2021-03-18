@@ -21,14 +21,26 @@
             <input id="search-input" type="text" placeholder="Entry search term...">
             <button type="submit" id="search-btn" href="#"><i class="fas fa-search"></i></button>
         </form>
-        <p class='recent-searches-title'>Your recent searches</p>
-        <ul class="recent-searches">
-            
-        </ul>
+        <div class="founded-beers hide">
+            <h2>Founded Beers</h2>
+                <ul>
+
+                </ul>
+        </div>
+        <div class="recent-searches-container">
+            <p class='recent-searches-title'>Your recent searches</p>
+            <ul class="recent-searches">
+                
+            </ul>
+        </div>
     </div>
+    <div class="error-modal hide">There were no properties found for 
+        the given location</div>
     
     <script type="module" src="modules/LocalStorageHandler.js"></script>
     <script type="module" src="modules/UI.js"></script>
+    <script type="module" src="modules/PunkAPI.js"></script>
+    <script type="module" src="modules/Validator.js"></script>
     <script type="module" src="script.js"></script>
 </body>
 </html>

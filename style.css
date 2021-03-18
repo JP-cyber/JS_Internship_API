@@ -58,21 +58,19 @@ body{
     background-color: #fff;
 }
 .recent-searches-title{
-    text-align: center;
+    text-align: right;
     font-size: 24px;
-    transform: translate(-1.5%);
 }
 .recent-searches{
     text-align: center;
     border-radius: 3px;
     border: 1px solid grey;
-    width: 20vw;
-    margin:auto;
+    width: 15vw;
+    float: right;
     padding-left: 0;
-    transform: translate(-4%);
 }
 .recent-searches li{
-    width: 20vw;
+    width: 15vw;
     margin: auto;
     line-height: 30px;
     border-bottom: 1px solid grey;
@@ -83,7 +81,41 @@ body{
 .recent-searches li:last-child{
     border-bottom: hidden;
 }
-
+.recent-searches-container{
+    position: absolute;
+    top: 21vh;
+    right: 8vw;
+}
+.founded-beers{
+    max-width: 60vw;
+}
+.founded-beers ul{
+    padding-left: 0;
+    border: 1px solid grey;
+    border-radius: 3px;
+    padding: 15px;
+}
+.founded-beers li{
+    border-bottom: 1px solid grey;
+}
+.founded-beers img{
+    max-height: 100px;
+    padding-left: 20px;
+    float: right;
+}
+.error-modal{
+    width: 40vw;
+    height: 20vh;
+    background-color:indigo;
+    position: fixed;
+    top: 7vw;
+    left: 30vw;
+    text-align: center;
+    color: #fff;
+    font-size: 50px;
+    line-height: 7vh;
+    padding: 20px;
+}
 .hide{
     display: none;
 }

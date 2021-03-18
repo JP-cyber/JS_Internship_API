@@ -1,4 +1,5 @@
 export default class LocalStorageHandler {
+    
     static setSearchItem(item){
         const searches = localStorage.getItem('searches');
 
