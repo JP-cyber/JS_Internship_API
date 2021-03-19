@@ -1,1 +1,171 @@
-
+*{
+    font-family: 'Roboto', sans-serif;
+    list-style: none;
+}
+body{
+    margin: 0;
+}
+.header{
+    width: 100%;
+    background-color:indigo;
+    height: 10vh;
+    position: relative;
+    margin-bottom: 40px;
+    position: relative;
+}
+.fav-counter{
+    color: #fff;
+    position: absolute;
+    font-size: 24px;
+    right: 3vw;
+    top: 3.4vh;
+}
+.app-name{
+    color: #fff;
+    text-align: center;
+    line-height: 10vh;
+    font-size: 40px;
+}
+.fav-btn{
+    display: inline;
+    position: absolute;
+    right: 6vw;
+    top: 3vh;
+    background-color: #3FC380;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    width: 150px;
+    font-size: 24px;
+    height: 35px;
+    color: #fff;
+}
+.container{
+    margin: 0 15vw;
+}
+.search-form{
+    text-align: center;
+    margin-bottom: 15px;
+}
+.search-form h1{
+    font-size: 30px;
+    color: #8DB0BB;
+}
+.search-form input{
+    width: 20vw;
+    height: 3vh;
+    border: 1px solid grey;
+    border-radius: 3px;
+    padding-left: 5px;
+    margin-right: 10px;
+    font-size: 16px;
+}
+#search-btn{
+    font-size: 20px;
+    border: 1px solid transparent;
+    outline: none;
+    background-color: #fff;
+}
+.recent-searches-title{
+    text-align: right;
+    font-size: 24px;
+}
+.recent-searches{
+    text-align: center;
+    border-radius: 3px;
+    border: 1px solid grey;
+    width: 15vw;
+    float: right;
+    padding-left: 0;
+}
+.recent-searches li{
+    width: 15vw;
+    margin: auto;
+    line-height: 30px;
+    border-bottom: 1px solid grey;
+}
+.recent-searches li:hover{
+    background-color:lightskyblue;
+}
+.recent-searches li:last-child{
+    border-bottom: hidden;
+}
+.recent-searches-container{
+    position: absolute;
+    top: 21vh;
+    right: 8vw;
+}
+.founded-beers{
+    max-width: 60vw;
+}
+.founded-beers ul{
+    padding-left: 0;
+    border: 1px solid grey;
+    border-radius: 3px;
+    padding: 15px;
+}
+.founded-beers li{
+    border-bottom: 1px solid grey;
+    position: relative;
+}
+.founded-beers img{
+    max-height: 100px;
+    padding-left: 20px;
+    float: right;
+}
+.error-modal{
+    width: 40vw;
+    height: 20vh;
+    background-color:indigo;
+    position: fixed;
+    top: 7vw;
+    left: 30vw;
+    text-align: center;
+    color: #fff;
+    font-size: 50px;
+    line-height: 7vh;
+    padding: 20px;
+}
+.arrow{
+    width: 75px;
+    height: 75px;
+    background-color: grey;
+    border-radius: 100%;
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    text-align: center;
+    line-height: 75px;
+    color: #fff;
+    font-size: 50px;
+}
+.load-more{
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px;
+    margin-bottom: 50px;
+    border: 1px solid grey;
+    color: #fff;
+    background-color: indigo;
+    font-size: 22px;
+    border-radius: 2px;
+}
+.fav-toggle{
+    border: 1px solid grey;
+    border-radius: 3px;
+    font-size: 20px;
+    position: absolute;
+    width: 15%;
+    bottom: 1.5vh;
+    color: #fff;
+    right: 8vw;
+}
+.green{
+    background-color:limegreen;
+}
+.red{
+    background-color: tomato;
+}
+.hide{
+    display: none;
+}
