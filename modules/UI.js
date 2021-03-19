@@ -1,3 +1,5 @@
+import Favourites from './Favourites.js';
+
 export default class UI {
 
     static beerPage = 1;
@@ -15,11 +17,15 @@ export default class UI {
         if(isBeersValid){
             beers.forEach(({imageURL, name, description,price}) => {
             const listItem = document.createElement('li');
+            const btnText = Favourites.isFavourite(name) ? 'Remove' : 'Add';
+            const btnClass = Favourites.isFavourite(name) ? 'red' : 'green';
+
             listItem.innerHTML = `
             <img src="${imageURL}">
             <h2>${name}</h2>
             <p>${description}</p>
             <p>Price: ${price}</p>
+            <button class="fav-toggle ${btnClass}">${btnText}</button>
             `;
             targetList.append(listItem);
             });

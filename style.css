@@ -11,6 +11,14 @@ body{
     height: 10vh;
     position: relative;
     margin-bottom: 40px;
+    position: relative;
+}
+.fav-counter{
+    color: #fff;
+    position: absolute;
+    font-size: 24px;
+    right: 3vw;
+    top: 3.4vh;
 }
 .app-name{
     color: #fff;
@@ -21,7 +29,7 @@ body{
 .fav-btn{
     display: inline;
     position: absolute;
-    right: 25px;
+    right: 6vw;
     top: 3vh;
     background-color: #3FC380;
     border: 1px solid transparent;
@@ -97,6 +105,7 @@ body{
 }
 .founded-beers li{
     border-bottom: 1px solid grey;
+    position: relative;
 }
 .founded-beers img{
     max-height: 100px;
@@ -140,6 +149,22 @@ body{
     background-color: indigo;
     font-size: 22px;
     border-radius: 2px;
+}
+.fav-toggle{
+    border: 1px solid grey;
+    border-radius: 3px;
+    font-size: 20px;
+    position: absolute;
+    width: 15%;
+    bottom: 1.5vh;
+    color: #fff;
+    right: 8vw;
+}
+.green{
+    background-color:limegreen;
+}
+.red{
+    background-color: tomato;
 }
 .hide{
     display: none;

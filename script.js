@@ -2,6 +2,7 @@ import UI from './modules/UI.js';
 import LocalStorageHandler from  './modules/LocalStorageHandler.js';
 import PunkAPI from  './modules/PunkAPI.js';
 import Validator from './modules/Validator.js';
+import Favourites from './modules/Favourites.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     UI.updateRecentSearches();
@@ -81,4 +82,34 @@ document.querySelector('.recent-searches').addEventListener('click', async (e) =
         const errorText = 'Warning: unvalid search query';
         UI.displayError(errorText);
     });
+});
+
+//Add to favourites
+document.querySelector('.founded-beers').addEventListener('click', (e) => {
+    const item = e.target;
+
+    if(item.classList.contains('fav-toggle')){
+        Favourites.toggleItem(item);
+
+        if( Favourites.isFavourite(item) ){
+            item.classList.remove('green');
+            item.classList.add('red');
+            item.textContent = 'Remove';
+        }else{
+            item.classList.remove('red');
+            item.classList.add('green');
+            item.textContent = 'Add';
+        }
+    }
+
+    //Favourites button behaviour
+    const favBtn = document.querySelector('.fav-btn');
+
+    if(Favourites.getLength() > 0){
+        favBtn.removeAttribute('disabled');
+    }else{
+        favBtn.setAttribute('disabled', true);
+    }
+
+    document.querySelector('.fav-counter').textContent = Favourites.getLength();
 });
