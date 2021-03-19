@@ -116,6 +116,31 @@ body{
     line-height: 7vh;
     padding: 20px;
 }
+.arrow{
+    width: 75px;
+    height: 75px;
+    background-color: grey;
+    border-radius: 100%;
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    text-align: center;
+    line-height: 75px;
+    color: #fff;
+    font-size: 50px;
+}
+.load-more{
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px;
+    margin-bottom: 50px;
+    border: 1px solid grey;
+    color: #fff;
+    background-color: indigo;
+    font-size: 22px;
+    border-radius: 2px;
+}
 .hide{
     display: none;
 }

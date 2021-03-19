@@ -17,9 +17,15 @@ export default class UI {
         }
     }
 
-    static renderBeers(beers) {
+    static beerPage = 1;
+
+    static renderBeers(beers, resetList = true) {
         const targetList = document.querySelector('.founded-beers ul');
-        targetList.innerHTML = '';
+
+        if(resetList){
+            targetList.innerHTML = '';
+        }
+
         const isBeersValid = typeof beers == 'object' && beers.length > 0;
 
         if(isBeersValid){
@@ -33,14 +39,15 @@ export default class UI {
             `;
             targetList.append(listItem);
             });
-        }else{
-            UI.hideElement('.founded-beers');
         }
-        
     }
 
-    static displayError() {
+    static displayError(text = null) {
         const errorModal = document.querySelector('.error-modal');
+
+        if(text){
+            errorModal.textContent = text;
+        }
         errorModal.classList.remove('hide');
         setTimeout(() => {
             errorModal.classList.add('hide');

@@ -1,16 +1,14 @@
-import UI from './UI.js';
-
 export default class PunkAPI {
 
-    static async searchBeer(beer) {
-        const beers = await fetch(`https://api.punkapi.com/v2/beers?beer_name=${beer}`)
+    static async searchBeer(beer, page = 1) {
+        const beers = await fetch(`https://api.punkapi.com/v2/beers?beer_name=${beer}&page=${page}&per_page=25`)
         .then(async response => {
             const result = await response.json();
+            
+            if(result.length === 0){
+                throw Error;
+            }
             return PunkAPI._transformBeer(result);
-        })
-        .catch(err => {
-            UI.displayError();
-            UI.hideElement('.founded-beers');
         });
 
         return beers;

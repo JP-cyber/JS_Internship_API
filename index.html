@@ -11,7 +11,7 @@
     <title>Punk API</title>
 </head>
 <body>
-    <header class="header">
+    <header class="header" id="top">
         <div class="app-name">Punk API</div>
         <button class="fav-btn">Favourites</button>
     </header>
@@ -26,6 +26,7 @@
                 <ul>
 
                 </ul>
+                <a href="#" class="load-more">Load More</a>
         </div>
         <div class="recent-searches-container">
             <p class='recent-searches-title'>Your recent searches</p>
@@ -36,6 +37,11 @@
     </div>
     <div class="error-modal hide">There were no properties found for 
         the given location</div>
+    <div class="arrow hide">
+        <a href="#top">
+            <i class="fas fa-arrow-up"></i>
+        </a>
+    </div>
     
     <script type="module" src="modules/LocalStorageHandler.js"></script>
     <script type="module" src="modules/UI.js"></script>
