@@ -54,7 +54,10 @@ export default class UI {
 
         if(text){
             errorModal.textContent = text;
+        }else{
+            errorModal.textContent = 'There were no properties found for the given location';
         }
+
         errorModal.classList.remove('hide');
         setTimeout(() => {
             errorModal.classList.add('hide');
