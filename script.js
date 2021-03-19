@@ -15,11 +15,12 @@ document.querySelector('.search-form').addEventListener('submit', async (e) => {
     const isInputValid = !!searchInput.value && Validator.validate(searchInput.value);
 
     if(isInputValid){
-        LocalStorageHandler.setSearchItem(searchInput.value);
-        UI.updateRecentSearches();
 
         await PunkAPI.searchBeer(searchInput.value)
         .then((fetchedBeer) => {
+            LocalStorageHandler.setSearchItem(searchInput.value);
+            UI.updateRecentSearches();
+
             UI.showElement('.founded-beers');
             UI.renderBeers(fetchedBeer);
         })
@@ -29,7 +30,7 @@ document.querySelector('.search-form').addEventListener('submit', async (e) => {
         });
         
         UI.beerPage = 1;
-        searchInput.value = '';
+        UI.recentSearch = searchInput.value;
     }
 });
 
@@ -50,7 +51,7 @@ document.querySelector('.arrow a').addEventListener('click', () => {
 document.querySelector('.load-more').addEventListener('click', async (e) => {
     e.preventDefault();
     
-    const recentSearch = document.querySelector('.recent-searches li').textContent;
+    const recentSearch = UI.recentSearch;
     const pageToFetch = ++UI.beerPage;
     
     await PunkAPI.searchBeer(recentSearch, pageToFetch)
@@ -62,4 +63,22 @@ document.querySelector('.load-more').addEventListener('click', async (e) => {
         UI.displayError(errorText);
     });
     
+});
+
+//Recall recent searches
+document.querySelector('.recent-searches').addEventListener('click', async (e) => {
+    const recentSearch = UI.recentSearch = e.target.textContent;
+    const searchInput = document.querySelector('#search-input');
+    searchInput.value = recentSearch;
+
+    await PunkAPI.searchBeer(recentSearch)
+    .then((beer) => {
+        UI.beerPage = 1;
+        UI.showElement('.founded-beers');
+        UI.renderBeers(beer);
+    })
+    .catch(err => {
+        const errorText = 'Warning: unvalid search query';
+        UI.displayError(errorText);
+    });
 });
