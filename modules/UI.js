@@ -5,8 +5,8 @@ export default class UI {
     static beerPage = 1;
     static recentSearch = '';
 
-    static renderBeers(beers, resetList = true) {
-        const targetList = document.querySelector('.founded-beers ul');
+    static renderBeers(beers, resetList = true, targetSelector = '.founded-beers ul') {
+        const targetList = document.querySelector(targetSelector);
 
         if(resetList){
             targetList.innerHTML = '';

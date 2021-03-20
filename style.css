@@ -169,3 +169,45 @@ body{
 .hide{
     display: none;
 }
+.fav-modal{
+    position: fixed;
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.4);
+}
+.fav-modal-content{
+    background-color: #fefefe;
+    margin: 5% auto; 
+    padding: 15px;
+    border: 1px solid #888;
+    width: 65%;
+    text-align: center;
+}
+.fav-modal h2{
+    font-size: 30px;
+    color: indigo;
+}
+.fav-items{
+    padding-left: 0;
+    border: 1px solid grey;
+    border-radius: 3px;
+    padding: 15px;
+    margin: 20px;
+}
+.fav-items li{
+    border-bottom: 1px solid grey;
+    position: relative;
+}
+.fav-items p{
+    text-align-last: left;
+}
+.fav-items img{
+    max-height: 100px;
+    padding-left: 20px;
+    float: right;
+}
+

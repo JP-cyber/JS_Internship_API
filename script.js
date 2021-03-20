@@ -113,3 +113,41 @@ document.querySelector('.founded-beers').addEventListener('click', (e) => {
 
     document.querySelector('.fav-counter').textContent = Favourites.getLength();
 });
+
+//Display favourites
+document.querySelector('.fav-btn').addEventListener('click', async () => {
+    const favItems = Favourites.getItems();
+    const iteratedItems = [];
+    for(let item of favItems){
+        const validItem = item.replace(/[& ]/g, "");
+        const beer = await PunkAPI.searchBeer(validItem);
+        iteratedItems.push(...beer);
+    }
+    UI.renderBeers(iteratedItems, true, '.fav-items');
+    UI.showElement('.fav-modal');
+});
+
+    //Hide favourites
+    document.querySelector('.fav-modal').addEventListener('click', (e) => {
+    if( e.target.classList.contains('fav-modal') ){
+        UI.hideElement('.fav-modal');
+    }
+});
+
+//Remove items from favourites modal
+document.querySelector('.fav-items').addEventListener('click', (e) => {
+    if( e.target.classList.contains('fav-toggle') ){
+        const item = e.target;
+        Favourites.toggleItem(item);
+        item.parentElement.remove();
+        
+        document.querySelector('.fav-counter').textContent = Favourites.getLength();
+        const favBtn = document.querySelector('.fav-btn');
+
+        if(Favourites.getLength() > 0){
+            favBtn.removeAttribute('disabled');
+        }else{
+            favBtn.setAttribute('disabled', true);
+        }
+    }
+});

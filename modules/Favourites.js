@@ -25,4 +25,8 @@ export default class Favourites {
         return Favourites._items.length;
     }
 
+    static getItems() {
+        return Favourites._items;
+    }
+
 }
