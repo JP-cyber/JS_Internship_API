@@ -124,14 +124,25 @@ document.querySelector('.fav-btn').addEventListener('click', async () => {
         iteratedItems.push(...beer);
     }
     UI.renderBeers(iteratedItems, true, '.fav-items');
+
+    //Remove not favourite items from list
+    const listItemsBtns = document.querySelectorAll('.fav-items li button');
+    listItemsBtns.forEach(item => {
+        if( item.classList.contains('green') ){
+            item.parentElement.remove();
+        }
+    });
     UI.showElement('.fav-modal');
 });
 
-    //Hide favourites
-    document.querySelector('.fav-modal').addEventListener('click', (e) => {
-    if( e.target.classList.contains('fav-modal') ){
-        UI.hideElement('.fav-modal');
-    }
+//Hide favourites and rerender items
+document.querySelector('.fav-modal').addEventListener('click', async (e) => {
+if( e.target.classList.contains('fav-modal') ){
+    const searchQuery = UI.recentSearch;
+    const beerObj = await PunkAPI.searchBeer(searchQuery);
+    UI.renderBeers(beerObj);
+    UI.hideElement('.fav-modal');
+}
 });
 
 //Remove items from favourites modal
@@ -139,7 +150,16 @@ document.querySelector('.fav-items').addEventListener('click', (e) => {
     if( e.target.classList.contains('fav-toggle') ){
         const item = e.target;
         Favourites.toggleItem(item);
-        item.parentElement.remove();
+
+        if( Favourites.isFavourite(item) ){
+            item.classList.remove('green');
+            item.classList.add('red');
+            item.textContent = 'Remove';
+        }else{
+            item.classList.remove('red');
+            item.classList.add('green');
+            item.textContent = 'Add';
+        }
         
         document.querySelector('.fav-counter').textContent = Favourites.getLength();
         const favBtn = document.querySelector('.fav-btn');
