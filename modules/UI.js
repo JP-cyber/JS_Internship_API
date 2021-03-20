@@ -32,6 +32,28 @@ export default class UI {
         }
     }
 
+    static toggleBtn(item) {
+        if( Favourites.isFavourite(item) ){
+            item.classList.remove('green');
+            item.classList.add('red');
+            item.textContent = 'Remove';
+        }else{
+            item.classList.remove('red');
+            item.classList.add('green');
+            item.textContent = 'Add';
+        }
+        
+        //Favourite button behaviour
+        const favBtn = document.querySelector('.fav-btn');
+
+        if(Favourites.getLength() > 0){
+            favBtn.removeAttribute('disabled');
+        }else{
+            favBtn.setAttribute('disabled', true);
+        }
+        document.querySelector('.fav-counter').textContent = Favourites.getLength();
+    }
+
     static updateRecentSearches() {
         const searches = localStorage.getItem('searches');
 

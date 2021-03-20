@@ -16,7 +16,6 @@ document.querySelector('.search-form').addEventListener('submit', async (e) => {
     const isInputValid = !!searchInput.value && Validator.validate(searchInput.value);
 
     if(isInputValid){
-
         await PunkAPI.searchBeer(searchInput.value)
         .then((fetchedBeer) => {
             LocalStorageHandler.setSearchItem(searchInput.value);
@@ -29,7 +28,6 @@ document.querySelector('.search-form').addEventListener('submit', async (e) => {
             UI.displayError();
             UI.hideElement('.founded-beers');
         });
-        
         UI.beerPage = 1;
         UI.recentSearch = searchInput.value;
     }
@@ -78,7 +76,7 @@ document.querySelector('.recent-searches').addEventListener('click', async (e) =
         UI.showElement('.founded-beers');
         UI.renderBeers(beer);
     })
-    .catch(err => {
+    .catch(() => {
         const errorText = 'Warning: unvalid search query';
         UI.displayError(errorText);
     });
@@ -90,28 +88,8 @@ document.querySelector('.founded-beers').addEventListener('click', (e) => {
 
     if(item.classList.contains('fav-toggle')){
         Favourites.toggleItem(item);
-
-        if( Favourites.isFavourite(item) ){
-            item.classList.remove('green');
-            item.classList.add('red');
-            item.textContent = 'Remove';
-        }else{
-            item.classList.remove('red');
-            item.classList.add('green');
-            item.textContent = 'Add';
-        }
+        UI.toggleBtn(item);
     }
-
-    //Favourites button behaviour
-    const favBtn = document.querySelector('.fav-btn');
-
-    if(Favourites.getLength() > 0){
-        favBtn.removeAttribute('disabled');
-    }else{
-        favBtn.setAttribute('disabled', true);
-    }
-
-    document.querySelector('.fav-counter').textContent = Favourites.getLength();
 });
 
 //Display favourites
@@ -147,27 +125,10 @@ if( e.target.classList.contains('fav-modal') ){
 
 //Remove items from favourites modal
 document.querySelector('.fav-items').addEventListener('click', (e) => {
-    if( e.target.classList.contains('fav-toggle') ){
-        const item = e.target;
+    const item = e.target;
+
+    if( item.classList.contains('fav-toggle') ){ 
         Favourites.toggleItem(item);
-
-        if( Favourites.isFavourite(item) ){
-            item.classList.remove('green');
-            item.classList.add('red');
-            item.textContent = 'Remove';
-        }else{
-            item.classList.remove('red');
-            item.classList.add('green');
-            item.textContent = 'Add';
-        }
-        
-        document.querySelector('.fav-counter').textContent = Favourites.getLength();
-        const favBtn = document.querySelector('.fav-btn');
-
-        if(Favourites.getLength() > 0){
-            favBtn.removeAttribute('disabled');
-        }else{
-            favBtn.setAttribute('disabled', true);
-        }
+        UI.toggleBtn(item);
     }
 });
