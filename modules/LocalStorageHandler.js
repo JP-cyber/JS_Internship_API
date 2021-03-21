@@ -24,4 +24,26 @@ export default class LocalStorageHandler {
             localStorage.setItem('searches', jsonSearches);
         }
     }
+
+    static toggleFavItem(item) {
+        const favs = localStorage.getItem('favs');
+        
+        if(!favs){
+            const arr = [item];
+            const jsonArr = JSON.stringify(arr);
+
+            localStorage.setItem('favs', jsonArr);
+        }else{
+            const favArr = JSON.parse(favs);
+            if( favArr.includes(item) ){
+                const itemIndex = favArr.indexOf(item);
+                favArr.splice(itemIndex, 1);
+            }else{
+                favArr.push(item);
+            }
+            const jsonFavs = JSON.stringify(favArr);
+            localStorage.setItem('favs', jsonFavs);
+        }
+        
+    }
 }

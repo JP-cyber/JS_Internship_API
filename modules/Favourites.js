@@ -1,3 +1,5 @@
+import LocalStorageHandler from './LocalStorageHandler.js';
+
 export default class Favourites {
 
     static _items = [];
@@ -11,6 +13,22 @@ export default class Favourites {
         }else{
             Favourites._items.push(itemName);
         }
+        LocalStorageHandler.toggleFavItem(itemName);
+    }
+
+    static refresh() {
+        const favsArr = JSON.parse( localStorage.getItem('favs') );
+        if(favsArr){
+            Favourites._items = favsArr;
+        }
+        const favBtn = document.querySelector('.fav-btn');
+
+        if(Favourites.getLength() > 0){
+            favBtn.removeAttribute('disabled');
+        }else{
+            favBtn.setAttribute('disabled', true);
+        }
+        document.querySelector('.fav-counter').textContent = Favourites.getLength();
     }
 
     static isFavourite(item) {

@@ -6,6 +6,7 @@ import Favourites from './modules/Favourites.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     UI.updateRecentSearches();
+    Favourites.refresh();
 });
 
 //Set search item and search beer
@@ -117,8 +118,14 @@ document.querySelector('.fav-btn').addEventListener('click', async () => {
 document.querySelector('.fav-modal').addEventListener('click', async (e) => {
 if( e.target.classList.contains('fav-modal') ){
     const searchQuery = UI.recentSearch;
-    const beerObj = await PunkAPI.searchBeer(searchQuery);
-    UI.renderBeers(beerObj);
+
+    if(searchQuery){
+        await PunkAPI.searchBeer(searchQuery)
+        .then(beer => {
+            UI.renderBeers(beer);
+        });
+    }
+    
     UI.hideElement('.fav-modal');
 }
 });
@@ -165,15 +172,19 @@ document.addEventListener('keydown', async (e) => {
         const searchQuery = UI.recentSearch;
         const beerPage = UI.beerPage;
         
-        if(beerPage > 1){
+        if(beerPage > 1 && searchQuery){
             for(let i = 1; i <= beerPage; i++){
                 const beerObj = await PunkAPI.searchBeer(searchQuery, i);
                 const resetList = i > 1 ? false : true;
                 UI.renderBeers(beerObj, resetList);
             }
-        }else{
-            const beerObj = await PunkAPI.searchBeer(searchQuery, beerPage);
-            UI.renderBeers(beerObj);
+        }else if(beerPage <= 1 && searchQuery){
+            await PunkAPI.searchBeer(searchQuery, beerPage)
+            .then(beer => {
+                UI.renderBeers(beer);
+            })
+            .catch(() => {});
+            
         }
         
         //Rerender favourites list
