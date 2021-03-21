@@ -1,1 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Punk API</title>
+</head>
+<body>
+    <header class="header" id="top">
+        <div class="app-name">Punk API</div>
+        <button class="fav-btn" disabled>Favourites</button>
+        <div class="fav-counter">0</div>
+    </header>
+    <div class="container">
+        <form class="search-form">
+            <h1>Search Beer</h1>
+            <input id="search-input" type="text" placeholder="Entry search term...">
+            <button type="submit" id="search-btn" href="#"><i class="fas fa-search"></i></button>
+        </form>
+        <div class="founded-beers hide">
+            <h2>Founded Beers</h2>
+                <ul>
 
+                </ul>
+                <a href="#" class="load-more">Load More</a>
+        </div>
+        <div class="recent-searches-container">
+            <p class='recent-searches-title'>Your recent searches</p>
+            <ul class="recent-searches">
+                
+            </ul>
+        </div>
+    </div>
+    <div class="error-modal hide"></div>
+    <div class="fav-modal hide">
+        <div class="fav-modal-content">
+            <h2>Favourites</h2>
+            <ul class="fav-items">
+            </ul>
+        </div>
+    </div>
+    <div class="single-item-modal hide">
+        <div class="single-item-content">
+        </div>
+    </div>
+    <div class="arrow hide">
+        <a href="#top">
+            <i class="fas fa-arrow-up"></i>
+        </a>
+    </div>
+    
+    <script type="module" src="modules/LocalStorageHandler.js"></script>
+    <script type="module" src="modules/UI.js"></script>
+    <script type="module" src="modules/PunkAPI.js"></script>
+    <script type="module" src="modules/Validator.js"></script>
+    <script type="module" src="modules/Favourites.js"></script>
+    <script type="module" src="script.js"></script>
+</body>
+</html>
