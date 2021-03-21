@@ -197,6 +197,13 @@ document.addEventListener('keydown', async (e) => {
             iteratedItems.push(...beer);
         }
         UI.renderBeers(iteratedItems, true, '.fav-items');
+        //Remove not favorite
+        const listItemsBtns = document.querySelectorAll('.fav-items li button');
+        listItemsBtns.forEach(item => {
+            if( item.classList.contains('green') ){
+                item.parentElement.remove();
+            }
+        });
         UI.hideElement('.single-item-modal');
 
         //Hide favourites if it's empty
