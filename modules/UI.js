@@ -32,6 +32,40 @@ export default class UI {
         }
     }
 
+    static renderBeer(beerObj) {
+        const targetModal = document.querySelector('.single-item-content');
+        const btnText = Favourites.isFavourite(beerObj.name) ? 'Remove' : 'Add';
+        const btnClass = Favourites.isFavourite(beerObj.name) ? 'red' : 'green';
+        targetModal.innerHTML = `
+        <h2>${beerObj.name}</h2>
+        <h3>${beerObj.tagline}</h3>
+        <img src="${beerObj.imageURL}">
+        <p>${beerObj.description}</p>
+        <pre>
+            ABV: ${beerObj.abv}
+            EBC: ${beerObj.ebc}
+            IBU: ${beerObj.ibu}
+            PH: ${beerObj.ph}
+            SRM: ${beerObj.srm}
+            Price: ${beerObj.price}
+        </pre>
+        <p>Brewers Tips: ${beerObj.brewersTips}</p>
+        <button class="fav-toggle ${btnClass}">${btnText}</button>
+        <h5>${beerObj.firstBrewed} Contributed By: ${beerObj.contributed}</h5>
+        `;
+    }
+
+    static displaySingleBeer(beer) {
+        UI.renderBeer(beer);
+        UI.showElement('.single-item-modal');
+
+        const modalBtn = document.querySelector('.single-item-content button');
+        modalBtn.onclick = () => {
+            Favourites.toggleItem(modalBtn);
+            UI.toggleBtn(modalBtn);
+        }
+    }
+
     static toggleBtn(item) {
         if( Favourites.isFavourite(item) ){
             item.classList.remove('green');

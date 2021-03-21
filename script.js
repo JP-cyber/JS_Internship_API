@@ -97,7 +97,7 @@ document.querySelector('.fav-btn').addEventListener('click', async () => {
     const favItems = Favourites.getItems();
     const iteratedItems = [];
     for(let item of favItems){
-        const validItem = item.replace(/[& ]/g, "");
+        const validItem = Validator.replaceSpecialChars(item);
         const beer = await PunkAPI.searchBeer(validItem);
         iteratedItems.push(...beer);
     }
@@ -130,5 +130,69 @@ document.querySelector('.fav-items').addEventListener('click', (e) => {
     if( item.classList.contains('fav-toggle') ){ 
         Favourites.toggleItem(item);
         UI.toggleBtn(item);
+    }
+});
+
+//Display single item from list
+document.querySelector('.founded-beers ul').addEventListener('click', async (e) => {
+    if(!e.target.matches('button')){
+        const listItem = e.target.closest('li');
+        const itemName = listItem.querySelector('h2').textContent;
+        const validItemName = Validator.replaceSpecialChars(itemName);
+        const beer = await PunkAPI.searchBeer(validItemName, 1, true);
+        UI.displaySingleBeer(beer);
+    }
+});
+
+//Display single item from favourites
+document.querySelector('.fav-items').addEventListener('click', async (e) => {
+    if(!e.target.matches('button')){
+        const listItem = e.target.closest('li');
+        const itemName = listItem.querySelector('h2').textContent;
+        const validItemName = Validator.replaceSpecialChars(itemName);
+        const beer = await PunkAPI.searchBeer(validItemName, 1, true);
+        UI.displaySingleBeer(beer);
+    }
+});
+
+//Hide single item
+document.addEventListener('keydown', async (e) => {
+    const singleItemModal = document.querySelector('.single-item-modal');
+    const isEventAppropriate = e.key === 'Escape' && !singleItemModal.classList.contains('hide');
+
+    if(isEventAppropriate){
+        //Rerender main list
+        const searchQuery = UI.recentSearch;
+        const beerPage = UI.beerPage;
+        
+        if(beerPage > 1){
+            for(let i = 1; i <= beerPage; i++){
+                const beerObj = await PunkAPI.searchBeer(searchQuery, i);
+                const resetList = i > 1 ? false : true;
+                UI.renderBeers(beerObj, resetList);
+            }
+        }else{
+            const beerObj = await PunkAPI.searchBeer(searchQuery, beerPage);
+            UI.renderBeers(beerObj);
+        }
+        
+        //Rerender favourites list
+        const favItems = Favourites.getItems();
+        const iteratedItems = [];
+
+        for(let item of favItems){
+            const validItem = Validator.replaceSpecialChars(item);
+            const beer = await PunkAPI.searchBeer(validItem);
+            iteratedItems.push(...beer);
+        }
+        UI.renderBeers(iteratedItems, true, '.fav-items');
+        UI.hideElement('.single-item-modal');
+
+        //Hide favourites if it's empty
+        const favModal = document.querySelector('.fav-modal li');
+
+        if(!favModal){
+            UI.hideElement('.fav-modal');
+        }
     }
 });

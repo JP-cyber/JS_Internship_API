@@ -5,4 +5,8 @@ export default class Validator {
 
         return isValid;
     }
+
+    static replaceSpecialChars(str){
+        return str.replace(/[&# ]/g, "");
+    }
 }
